@@ -1,3 +1,5 @@
+This is the code & data for paper "Automatic Paraphrasing via Sentence Reconstruction and Round-trip Translation"
+
 requirements for the code:
 1. python==3.x
 2. tensorflow==1.12.0
