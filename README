@@ -1,0 +1,18 @@
+requirements for the code:
+1. python==3.x
+2. tensorflow==1.12.0
+3. OpenNMT-tf==1.24.0
+4. nltk
+
+steps to re-produce the results:
+1. download the Chinese-English translation training data (we are using WMT2017, you can use any dataset you like)
+2. preprocessing the data (tokenization, BPE). We provided the code for train_bpe and apply bpe in dir "tools"
+3. go to "translate_en2zh" and modify "config.yml", train a en->zh transaltion model with go.sh
+4. go to "translate_zh2en" and modify "config.yml", train a zh->en transaltion model with go.sh
+5. go to "set2seq" and modify "config.yml", train a set2seq model. We provided the training data in dir "data/Quora", if you want to use other datasets, you can pre-processing the data (build the word set) with the code "tools/preprocess.py".
+6. Now you have the models, to generate paraphrase for a input file "test.txt", do the following steps:
+    1) first translate it into Chinese with translater_en2zh/translate.sh. You get the translation "test_zh.txt".
+    2) Then, get the word set with "tools/preprocess.py", you get the word set "test_wordset.txt". 
+    3) Merge three files together with command "paste test_zh.txt test_wordset.txt test.txt > test.triple".
+    4) Generate paraphrase with the script "translater_zh2en/infer.sh"
+    If you are using preprocessing algorithms like BPE, please do it every time before you input the data into a model.

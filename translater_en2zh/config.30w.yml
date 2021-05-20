@@ -1,0 +1,24 @@
+model_dir: ../model/LDC_en2zh_30w
+ae_model_dir: ../model/AutoEncoder/synonym
+
+data:
+  train_features_file: ../data/LDC/para-test/30w/en
+  train_labels_file: ../data/LDC/para-test/30w/zh
+  eval_features_file: ../data/LDC/test/test.en.bpe
+  eval_labels_file: ../data/LDC/test/test.zh
+  source_words_vocabulary: ../vocab/vocab.en
+  target_words_vocabulary: ../vocab/vocab.zh
+
+ae_data:
+  source_words_vocabulary: ../vocab/vocab.zh 
+  target_words_vocabulary: ../vocab/vocab.zh
+
+train:
+  save_checkpoints_steps: 2000
+
+eval:
+  external_evaluators: BLEU
+  eval_delay: 1200
+
+infer:
+  batch_size: 32

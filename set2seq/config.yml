@@ -1,0 +1,19 @@
+model_dir: ../models/set2seq/WikiAnswers-light-2
+
+data:
+  train_features_file: ../data/WikiAnswers/train/train.0.bpe
+  train_labels_file: ../data/WikiAnswers/train/train.1.bpe
+  eval_features_file: ../data/WikiAnswers/test/test.wordset.bpe
+  eval_labels_file: ../data/WikiAnswers/test/test.1.first
+  source_words_vocabulary: ../vocab/vocab.en
+  target_words_vocabulary: ../vocab/vocab.en
+
+train:
+  save_checkpoints_steps: 2000
+
+eval:
+  external_evaluators: BLEU
+  eval_delay: 1200
+
+infer:
+  batch_size: 32
